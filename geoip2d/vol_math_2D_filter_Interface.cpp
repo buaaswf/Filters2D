@@ -15,7 +15,6 @@ using namespace std;
 	//Raw2D &indata=Image2D2Raw2D(src);//to be test
 	Raw2D indata=Image2D2Raw2D(src);//to be test
 	Anistropic2D * pde=new Anistropic2D(indata,para.time,para.val,para.method);//to be ask
-	
 	delete pde;
 	return Raw2D2Image2D(indata,src.PixelType);;
 #else  //qym new way

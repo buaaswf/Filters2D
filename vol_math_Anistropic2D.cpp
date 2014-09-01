@@ -12,7 +12,8 @@ Anistropic2D::Anistropic2D(Raw2D &data,int time,PIXTYPE value, int method)
 	} 
 	else
 	{
-		FourPDiff(src);
+		FourPDiff_v2(src);
+		data = src;
 	}
 }
 
@@ -58,16 +59,17 @@ void  Anistropic2D::Perona_Malik(Raw2D &data)
 	delete &d;
 	delete &s;
 }
-Raw2D gradientlaplace(Raw2D &src)
+Raw2D* gradientlaplace(Raw2D &src)
 {
-	Raw2D val(src);
+	Raw2D *val=new Raw2D(src);
 	for (int i=2;i<src.getXsize()-2;i++)
 	{
 		for (int j=2;j<src.getYsize()-2;j++)
 		{
-
-				val.put(i,j,(src.get(i+1,j)+src.get(i-1,j)+src.get(i,j+1)+src.get(i,j-1)-4*src.get(i,j)));
-
+			PIXTYPE temp = src.get(i + 1, j) + src.get(i - 1, j) + src.get(i, j + 1) + src.get(i, j - 1) - 4 * src.get(i, j);
+				
+				temp = temp / (1 + temp*temp);
+				val->put(i, j,  (temp * 10));
 		}
 	}
 
@@ -88,5 +90,84 @@ Raw2D Anistropic2D::FourPDiff(Raw2D &src)			//based on Y-K model
 		s=d-s/double(4);
 	}
 	return s;
+
+}
+void Anistropic2D::FourPDiff_v2(Raw2D &src)			//based on Y-K model
+{
+	Raw2D *ret = new Raw2D(src);
+	bool flag = false;
+
+	int x, y, z, j;
+
+	Raw2D *d = new Raw2D(src); 
+ 	for (int ii = 0; ii < 1; ii++)
+	{
+		Raw2D *_ret=NULL;
+		_ret = gradientlaplace(*d);
+		Raw2D *sum = new Raw2D(src);
+
+		for (int i = 1; i < _ret->getXsize() - 1; i++)
+		{
+			for (int j = 1; j < _ret->getYsize() - 1; j++)
+			{
+
+				PIXTYPE var1 = _ret->get(i + 1, j) + _ret->get(i - 1, j) +
+					_ret->get(i, j + 1) + _ret->get(i, j - 1);
+				PIXTYPE var2 = _ret->get(i, j) * 4;
+				PIXTYPE var = var2 - var1;
+				sum->put(i, j, var );
+
+			}
+		}
+
+		for (int i = 0; i < ret->size(); i++)
+		{
+			float t = 0;
+			if ((t = d->getXY(i) - sum->getXY(i) / 4) <= 0)
+			{
+				sum->putXY(i, 0);
+			}
+			else if ((t = d->getXY(i) - sum->getXY(i) / 4) < 255)
+			{
+				sum->putXY(i, floor(t + 0.5));
+			}
+			else
+			{
+				sum->putXY(i, 255);
+			}
+
+		}
+		
+		if (ii == time - 1)
+		{
+			//for (int i = 0; i < src.getXsize(); i++)
+			//{
+			//	for (int j = 0; j < src.getYsize(); j++)
+			//	{
+
+			//		if (!(i> 2 && i < src.getXsize() - 3 && j>2 && j < src.getYsize() - 3)	 )
+			//		{
+			//			sum->put(i, j,  src.get(i, j));
+			//		}
+
+			//	}
+			//}
+			
+			Filter *gauss = new Filter();
+			gauss->guassFilter(sum, 3);
+			
+			delete gauss;
+		}//end.. if
+
+		memcpy(ret->getdata(), sum->getdata(), d->size() * 4);
+		*d = *sum;
+		delete _ret;
+		delete sum;
+
+	}//....end for 
+	memcpy(src.getdata(), ret->getdata(), src.size() * 4);
+
+
+
 
 }

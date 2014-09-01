@@ -1,7 +1,26 @@
-﻿生成启动时间为 2014/8/3 15:28:39。
+﻿生成启动时间为 2014/9/1 15:23:12。
      1>项目“E:\geoIP\Filters2D\Filters2D\Filters2D.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\vs2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt vol_math_2D_filter_Interface.cpp
+         D:\vs2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt vol_math_2D_filter_Interface.cpp vol_math_Anistropic2D.cpp
+         vol_math_Anistropic2D.cpp
+     1>e:\geoip\filters2d\filters2d\vol_math_guassfilter.h(67): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+     1>e:\geoip\filters2d\filters2d\vol_math_guassfilter.h(68): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+     1>e:\geoip\filters2d\filters2d\vol_math_guassfilter.h(69): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(7): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(52): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(29): warning C4101: “K”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(29): warning C4101: “z”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(29): warning C4101: “j”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(82): warning C4101: “y”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(82): warning C4101: “x”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(82): warning C4101: “z”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(81): warning C4101: “sum”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(82): warning C4101: “j”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(140): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(100): warning C4101: “y”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(100): warning C4101: “x”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(100): warning C4101: “z”: 未引用的局部变量
+     1>e:\geoip\filters2d\filters2d\vol_math_anistropic2d.cpp(100): warning C4101: “j”: 未引用的局部变量
          vol_math_2D_filter_Interface.cpp
      1>e:\geoip\filters2d\filters2d\vol_math_guassfilter.h(67): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
      1>e:\geoip\filters2d\filters2d\vol_math_guassfilter.h(68): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
@@ -9,6 +28,8 @@
      1>e:\geoip\filters2d\filters2d\vol_math_2dtrilateralfilter.h(12): warning C4005: “M_EXP”: 宏重定义
                  e:\geoip\filters2d\filters2d\vol_math_bilateralfilter.h(4) : 参见“M_EXP”的前一个定义
      1>e:\geoip\filters2d\filters2d\vol_math_2d_filter_interface.cpp(17): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+         正在生成代码...
+     1>e:\geoip\filters2d\filters2d\vol_math_raw3d_independt.h(191): warning C4715: “Raw2D::get”: 不是所有的控件路径都返回值
      1>e:\geoip\filters2d\filters2d\vol_math_raw3d_independt.h(191): warning C4715: “Raw2D::get”: 不是所有的控件路径都返回值
        Link:
          D:\vs2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\geoIP\Filters2D\Debug\Filters2D.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\geoIP\Filters2D\Debug\Filters2D.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\geoIP\Filters2D\Debug\Filters2D.lib" /MACHINE:X86 Debug\mainme.obj
@@ -26,4 +47,4 @@
 
 生成成功。
 
-已用时间 00:00:01.01
+已用时间 00:00:01.63
