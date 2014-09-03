@@ -82,6 +82,8 @@ changes.
 		Bilaterally filter the X and Y gradients of the input image (Step 3, equation 4 and 5)
 		to produce xSmoothGradient and ySmoothGradient.
 	**/
+	//qym 2014-9-2 add missing part
+	pSrcImg->BilateralGradientFilter(&xGradient, &yGradient, &xSmoothGradient, &ySmoothGradient, sigmaC, sigmaR, filterSize);
 
 	/**
 		Find the adaptive neighborhood fTheta for each pixel location (Step 4). fTheta size is

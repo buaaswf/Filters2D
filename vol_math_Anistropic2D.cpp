@@ -69,7 +69,7 @@ Raw2D* gradientlaplace(Raw2D &src)
 			PIXTYPE temp = src.get(i + 1, j) + src.get(i - 1, j) + src.get(i, j + 1) + src.get(i, j - 1) - 4 * src.get(i, j);
 				
 				temp = temp / (1 + temp*temp);
-				val->put(i, j,  (temp * 10));
+				val->put(i, j,  (temp * 5));
 		}
 	}
 
@@ -100,7 +100,7 @@ void Anistropic2D::FourPDiff_v2(Raw2D &src)			//based on Y-K model
 	int x, y, z, j;
 
 	Raw2D *d = new Raw2D(src); 
- 	for (int ii = 0; ii < 1; ii++)
+ 	for (int ii = 0; ii < time; ii++)
 	{
 		Raw2D *_ret=NULL;
 		_ret = gradientlaplace(*d);
@@ -115,7 +115,7 @@ void Anistropic2D::FourPDiff_v2(Raw2D &src)			//based on Y-K model
 					_ret->get(i, j + 1) + _ret->get(i, j - 1);
 				PIXTYPE var2 = _ret->get(i, j) * 4;
 				PIXTYPE var = var2 - var1;
-				sum->put(i, j, var );
+				sum->put(i, j, var/4);
 
 			}
 		}
@@ -155,16 +155,17 @@ void Anistropic2D::FourPDiff_v2(Raw2D &src)			//based on Y-K model
 			
 			Filter *gauss = new Filter();
 			gauss->guassFilter(sum, 3);
-			
+			memcpy(ret->getdata(), sum->getdata(), d->size() * 4);
 			delete gauss;
 		}//end.. if
 
-		memcpy(ret->getdata(), sum->getdata(), d->size() * 4);
+		
 		*d = *sum;
 		delete _ret;
 		delete sum;
 
 	}//....end for 
+	
 	memcpy(src.getdata(), ret->getdata(), src.size() * 4);
 
 

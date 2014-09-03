@@ -97,7 +97,7 @@ void Exit()
 	 memcpy(src->data,indata,src->width*src->height);
 	 Image2D *ret = new Image2D(l,m,1);
 	 memcpy(ret->data,outdata,ret->width*ret->height);
-	 AnistropicI *tri =new AnistropicI(3,3,2,1);
+	 AnistropicI *tri =new AnistropicI(50,3,2,1);
 	 ret=(Image2D*)doAnistropicI2D_new(*src,*tri);
 
 	 test.writeImagesesmicarray(ret->data ,ret->width,ret->height,1);
